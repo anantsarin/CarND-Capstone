@@ -99,9 +99,11 @@ class TLDetector(object):
             self.last_state = self.state
             light_wp = light_wp if (state == TrafficLight.RED or state == TrafficLight.YELLOW) else -1
             self.last_wp = light_wp
+
             self.upcoming_red_light_pub.publish(Int32(light_wp))
         else:
             self.upcoming_red_light_pub.publish(Int32(self.last_wp))
+        print(self.last_wp)
         self.state_count += 1
 
     def get_closest_waypoint(self, x, y):
@@ -128,16 +130,16 @@ class TLDetector(object):
             int: ID of traffic light color (specified in styx_msgs/TrafficLight)
 
         """
-        # print("print light state ",light.state)
-        # return light.state
-        if(not self.has_image):
-            self.prev_light_loc = None
-            return False
+        print("print light state ",light.state)
+        return light.state
+        # if(not self.has_image):
+        #     self.prev_light_loc = None
+        #     return False
 
-        cv_image = self.bridge.imgmsg_to_cv2(self.camera_image, "bgr8")
+        # cv_image = self.bridge.imgmsg_to_cv2(self.camera_image, "bgr8")
 
-        #Get classification
-        return self.light_classifier.get_classification(cv_image)
+        # #Get classification
+        # return self.light_classifier.get_classification(cv_image)
 
     def process_traffic_lights(self):
         """Finds closest visible traffic light, if one exists, and determines its

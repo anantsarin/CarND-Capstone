@@ -98,9 +98,11 @@ class WaypointUpdater(object):
         # if not self.traffic.stop() or (self.traffic.idx >= farthest_idx):
         if self.stopline_wp_idx == -1 or (self.stopline_wp_idx >= farthest_idx):
             lane.waypoints = base_waypoints
+            print("use waypoints as is stopline = -1 ")
 
         else:
             # stop_waypoints = self.base_lane.waypoints[closest_idx:(self.traffic.idx - 2)]
+            print("stop car")
             lane.waypoints = self.decelerate_waypoints(base_waypoints, closest_idx)
 
         return lane
