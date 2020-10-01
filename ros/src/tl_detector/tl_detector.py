@@ -101,7 +101,7 @@ class TLDetector(object):
             # rospy.loginfo("upcomming light  = ")
             # rospy.loginfo(light_wp)
             self.upcoming_red_light_pub.publish(Int32(self.last_wp))
-        print(self.last_wp)
+        #print(self.last_wp)
         self.state_count += 1
 
     def get_closest_waypoint(self, x, y):
